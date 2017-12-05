@@ -1,3 +1,9 @@
+//define variables for game play
+var winCount = 0;
+var lossCount = 0;
+var guessesRemaining = 10;
+var guessedLetters = [];
+
 // set up array for computer to choose from
 var alphabet =
     ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
@@ -22,8 +28,12 @@ document.onkeyup = function(event) {
     }
     // compares the randomly selected computer choice and user choice
     if (computerChoice === userChoice) {
-      console.log("You win!");
+      alert("You won!");
+      document.getElementById("winCount").innerHTML = winCount++;
     } else {
-      console.log("You lose!");
+      alert("Guess again!")
+      document.getElementById("guessesRemaining").innerHTML = guessesRemaining--;
+      guessedLetters.push(userChoice);
+      document.getElementById("guessedLetters");
     }
 }
