@@ -1,7 +1,7 @@
 //define variables for game play
-var winCount = 0;
+var winCount = 1;
 var lossCount = 0;
-var guessesRemaining = 10;
+var guessesRemaining = 9;
 var guessedLetters = [];
 
 // set up array for computer to choose from
@@ -24,16 +24,32 @@ document.onkeyup = function(event) {
       alert("please enter a letter");
     }
     else {
-      console.log(event.key);
+      console.log(userChoice);
+    }
+    // reset computer choice if the user loses
+    if (guessesRemaining <= 0) {
+      lossCount++;
+      document.getElementById("lossCount").innerHTML = lossCount++;
+      console.log("You lost!");
+      guessesRemaining = 10;
+      document.getElementById("guessesRemaining").innerHTML = 10;
+      randomIndex = Math.floor(Math.random() * alphabet.length);
+      computerChoice = alphabet[randomIndex];
+      console.log(computerChoice);
     }
     // compares the randomly selected computer choice and user choice
     if (computerChoice === userChoice) {
-      alert("You won!");
+      console.log("You won!");
       document.getElementById("winCount").innerHTML = winCount++;
+      randomIndex = Math.floor(Math.random() * alphabet.length);
+      computerChoice = alphabet[randomIndex];
+      console.log(computerChoice);
+      guessesRemaining = 10;
+      document.getElementById("guessesRemaining").innerHTML = 10;
     } else {
-      alert("Guess again!")
+      console.log("Guess again!");
       document.getElementById("guessesRemaining").innerHTML = guessesRemaining--;
-      guessedLetters.push(userChoice);
-      document.getElementById("guessedLetters");
+      // guessedLetters.push(userChoice);
+      // document.getElementById("guessedLetters");
     }
 }
