@@ -1,7 +1,7 @@
 //define variables for game play
 var winCount = 1;
 var lossCount = 0;
-var guessesRemaining = 9;
+var guessesRemaining = 10;
 var guessedLetters = [];
 
 // set up array for computer to choose from
@@ -31,7 +31,10 @@ document.onkeyup = function(event) {
       lossCount++;
       document.getElementById("lossCount").innerHTML = lossCount++;
       console.log("You lost!");
+      alert("You lost!");
       guessesRemaining = 10;
+      guessedLetters = [];
+      document.getElementById("guessedLetters").innerHTML = guessedLetters;
       document.getElementById("guessesRemaining").innerHTML = 10;
       randomIndex = Math.floor(Math.random() * alphabet.length);
       computerChoice = alphabet[randomIndex];
@@ -40,7 +43,10 @@ document.onkeyup = function(event) {
     // compares the randomly selected computer choice and user choice
     if (computerChoice === userChoice) {
       console.log("You won!");
+      alert("You won!");
       document.getElementById("winCount").innerHTML = winCount++;
+      guessedLetters = [];
+      document.getElementById("guessedLetters").innerHTML = guessedLetters;
       randomIndex = Math.floor(Math.random() * alphabet.length);
       computerChoice = alphabet[randomIndex];
       console.log(computerChoice);
@@ -49,7 +55,7 @@ document.onkeyup = function(event) {
     } else {
       console.log("Guess again!");
       document.getElementById("guessesRemaining").innerHTML = guessesRemaining--;
-      // guessedLetters.push(userChoice);
-      // document.getElementById("guessedLetters");
+      guessedLetters.push(userChoice);
+      document.getElementById("guessedLetters").innerHTML = guessedLetters;
     }
 }
